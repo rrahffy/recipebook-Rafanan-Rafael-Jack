@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+table, td, th {
+    border: 1px solid;
+}
+table {
+    border-collapse: collapse;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<h2>{{ name }}</h2>
+<table style="margin-left: 20px">
+    <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+    </tr>
+    {% for ingredient in ingredients %}
+    <tr>
+        <td>{{ ingredient.name }}</td>
+        <td>{{ ingredient.quantity }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<a href="/recipes/list">Return to Recipe List</a>
+{% endblock %}
