@@ -12,16 +12,16 @@ table {
 {% endblock %}
 
 {% block content %}
-<h2>{{ name }}</h2>
+<h2>{{ recipe.name }}</h2>
 <table style="margin-left: 20px">
     <tr>
         <th>Name</th>
         <th>Quantity</th>
     </tr>
-    {% for ingredient in ingredients %}
+    {% for ri in recipe.ingredients.all %}
     <tr>
-        <td>{{ ingredient.name }}</td>
-        <td>{{ ingredient.quantity }}</td>
+        <td>{{ ri.ingredient.name }}</td>
+        <td>{{ ri.quantity }}</td>
     </tr>
     {% endfor %}
 </table>
