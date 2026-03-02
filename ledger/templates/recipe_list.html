@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<h2>Recipes</h2>
+{% block page_title %}Recipe List{% endblock %} {% block content %}
 <ul>
     {% for recipe in recipes %}
-    <li><a href="{{ recipe.get_absolute_url }}">{{ recipe.name }}</a></li>
+    <li>
+        <a href="{{ recipe.get_absolute_url }}">{{ recipe.name }}</a>
+        (by {{ recipe.author.name }})
+    </li>
     {% endfor %}
 </ul>
 {% endblock %}
