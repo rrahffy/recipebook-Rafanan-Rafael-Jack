@@ -13,9 +13,13 @@ table {
 
 {% block content %}
 <h2>{{ recipe.name }}</h2>
+
+<p><strong>Author:</strong> {{ recipe.author.name }}</p>
+<p><strong>Created:</strong> {{ recipe.created_on|date:"M d, Y" }}</p>
+
 <table style="margin-left: 20px">
     <tr>
-        <th>Name</th>
+        <th>Ingredient</th>
         <th>Quantity</th>
     </tr>
     {% for ri in recipe.ingredients.all %}
@@ -26,5 +30,5 @@ table {
     {% endfor %}
 </table>
 <br>
-<a href="/recipes/list">Return to Recipe List</a>
+<a href="{% url 'recipes_list' %}">Return to Recipe List</a>
 {% endblock %}
