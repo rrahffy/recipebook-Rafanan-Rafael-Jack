@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
-{% block page_title %}{{ recipe.name }}{% endblock %} {% block style %}
+{% block page_title %}{{ recipe.name }}{% endblock %}
+
+{% block style %}
 <style>
 table, td, th {
     border: 1px solid;
@@ -12,20 +14,30 @@ table {
 {% endblock %}
 
 {% block content %}
-<p><strong>Author:</strong> {{ recipe.author.name }}</p>
-<p><strong>Created:</strong> {{ recipe.created_on|date:"M d, Y" }}</p>
-<p><strong>Last Updated:</strong> {{ recipe.updated_on|date:"M d, Y" }}</p> <table style="margin-left: 20px">
-    <tr>
-        <th>Ingredient</th>
-        <th>Quantity</th>
-    </tr>
-    {% for ri in recipe.ingredients.all %}
-    <tr>
-        <td>{{ ri.ingredient.name }}</td>
-        <td>{{ ri.quantity }}</td>
-    </tr>
+    <p><strong>Author:</strong> {{ recipe.author.name }}</p>
+    <p><strong>Created:</strong> {{ recipe.created_on|date:"M d, Y" }}</p>
+    <p><strong>Last Updated:</strong> {{ recipe.updated_on|date:"M d, Y" }}</p>
+
+    <table style="margin-left: 20px">
+        <tr>
+            <th>Ingredient</th>
+            <th>Quantity</th>
+        </tr>
+        {% for ri in recipe.ingredients.all %}
+        <tr>
+            <td>{{ ri.ingredient.name }}</td>
+            <td>{{ ri.quantity }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Images</h3>
+    {% for img in recipe.images.all %}
+        <img src="{{ img.image.url }}" alt="{{ img.description }}">
+        <p>{{ img.description }}</p>
     {% endfor %}
-</table>
-<br>
-<a href="{% url 'recipes_list' %}">Return to Recipe List</a>
+
+    <a href="{% url 'recipe_add_image' recipe.pk %}">Add Image</a>
+    <br>
+    <a href="{% url 'recipes_list' %}">Return to Recipe List</a>
 {% endblock %}

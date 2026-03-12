@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 
-{% block page_title %}Recipe List{% endblock %} {% block content %}
-<ul>
-    {% for recipe in recipes %}
-    <li>
-        <a href="{{ recipe.get_absolute_url }}">{{ recipe.name }}</a>
-        (by {{ recipe.author.name }})
-    </li>
-    {% endfor %}
-</ul>
+{% block page_title %}Recipe List{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <a href="{% url 'recipe_add' %}">Add New Recipe</a>
+    {% endif %}
+
+    <ul>
+        {% for recipe in recipes %}
+            <li><a href="{{ recipe.get_absolute_url }}">{{ recipe.name }}</a></li>
+        {% endfor %}
+    </ul>
 {% endblock %}
