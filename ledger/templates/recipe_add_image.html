@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Add Image{% endblock %}
+
+{% block content %}
+    <a href="{% url 'recipe' recipe.pk %}">Back to {{ recipe.name }}</a>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload Image</button>
+    </form>
+{% endblock %}
