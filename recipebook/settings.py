@@ -122,3 +122,6 @@ LOGIN_REDIRECT_URL = 'recipes_list'  # Redirect to Recipe List after login
 LOGOUT_REDIRECT_URL = 'login'         # Redirect to login page after logout
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
